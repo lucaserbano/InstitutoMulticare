@@ -1,0 +1,20 @@
+# Fontes de identidade visual e fotos originais (não vão para produção)
+id-visual/
+fotos/
+conteudo-site-antigo-scrapping/
+
+# Documentos de processo e ferramentas
+.claude/
+.agents/
+.codex/
+docs/
+CLAUDE.md
+PRODUCT.md
+DESIGN.md
+
+# Asset não utilizado pelo site
+assets/img/logo-dourado.png
+
+# Sistema
+.DS_Store
+**/.DS_Store
