@@ -48,6 +48,27 @@
     });
   });
 
+  /* ---- Revelação suave ao entrar na viewport (load + scroll) ---- */
+  const reveals = document.querySelectorAll(".reveal");
+  if (reveals.length) {
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
+      );
+      reveals.forEach((el) => io.observe(el));
+    } else {
+      reveals.forEach((el) => el.classList.add("is-visible"));
+    }
+  }
+
   /* ---- Ano no rodapé ---- */
   const yearEl = document.querySelector("[data-year]");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
