@@ -770,10 +770,8 @@ strong {
   align-items: start;
 }
 .footer__brand {
-  align-self: stretch;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
   text-align: left;
   gap: 0.7rem;
