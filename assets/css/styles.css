@@ -43,6 +43,14 @@
   --rule-strong: 1px solid var(--gold);
   --hairline-faint: 1px solid rgba(255, 255, 255, 0.1);
 
+  /* Superfícies claras (hero + seções claras) */
+  --paper-1: #f4f2ec;
+  --paper-2: #ece8df;
+
+  /* Grão tátil reutilizável (SVG fractalNoise alpha translúcido).
+     Sobre fundo escuro vira textura suave; sobre fundo claro, micro-granulado. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.3'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
   /* Tipografia */
   --font-display: "Marisa", "Century Gothic", "Montserrat", sans-serif;
   --font-body: "Montserrat", system-ui, -apple-system, sans-serif;
@@ -95,7 +103,7 @@ body {
   font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
   line-height: 1.65;
   color: var(--ink);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.3'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+  background-image: var(--grain),
     linear-gradient(162deg, #3b3c3a 0%, #494a46 52%, #545350 100%);
   background-repeat: repeat, no-repeat;
   background-size: 180px 180px, cover;
@@ -278,6 +286,7 @@ strong {
 .nav__brand img {
   height: 42px;
   width: auto;
+  transition: filter var(--dur) var(--ease-out);
 }
 .nav__wordmark {
   font-family: var(--font-display);
@@ -287,6 +296,7 @@ strong {
   line-height: 1;
   color: var(--ink);
   white-space: nowrap;
+  transition: color var(--dur) var(--ease-out);
 }
 .nav__menu {
   display: flex;
@@ -350,7 +360,8 @@ strong {
   height: 1.5px;
   background: var(--ink);
   transition: transform var(--dur) var(--ease-out),
-    opacity var(--dur-fast) var(--ease-out);
+    opacity var(--dur-fast) var(--ease-out),
+    background var(--dur) var(--ease-out);
 }
 .nav__toggle span::before {
   position: absolute;
@@ -368,6 +379,29 @@ strong {
 }
 .nav__toggle[aria-expanded="true"] span::after {
   transform: rotate(-45deg);
+}
+
+/* Navbar sobre hero clara (só na Início): no topo, antes de rolar, a tinta
+   fica escura para contrastar com o fundo claro. Ao rolar (surge o fundo
+   grafite translúcido) ou com o menu mobile aberto (painel escuro), volta
+   para a tinta clara padrão. */
+.nav--on-light:not(.is-scrolled):not(.is-menu-open) .nav__wordmark {
+  color: var(--charcoal);
+}
+.nav--on-light:not(.is-scrolled):not(.is-menu-open) .nav__brand img {
+  filter: brightness(0.3);
+}
+.nav--on-light:not(.is-scrolled):not(.is-menu-open) .nav__link {
+  color: rgba(64, 65, 63, 0.66);
+}
+.nav--on-light:not(.is-scrolled):not(.is-menu-open) .nav__link:hover,
+.nav--on-light:not(.is-scrolled):not(.is-menu-open) .nav__link[aria-current="page"] {
+  color: var(--charcoal);
+}
+.nav--on-light:not(.is-scrolled):not(.is-menu-open) .nav__toggle span,
+.nav--on-light:not(.is-scrolled):not(.is-menu-open) .nav__toggle span::before,
+.nav--on-light:not(.is-scrolled):not(.is-menu-open) .nav__toggle span::after {
+  background: var(--charcoal);
 }
 
 /* ---------- Navbar mobile ---------- */
@@ -454,6 +488,25 @@ strong {
 .hero--home .hero__inner {
   max-width: 40rem;
 }
+/* Hero da Início: superfície clara (off-white) com grão, texto cinza.
+   A foto à direita (.hero__media) e sua máscara permanecem intocadas — o
+   esmaecimento agora revela o fundo claro em vez do grafite. */
+.hero--home {
+  color: var(--slate);
+  background-image: var(--grain),
+    linear-gradient(162deg, var(--paper-1) 0%, var(--paper-2) 100%);
+  background-repeat: repeat, no-repeat;
+  background-size: 180px 180px, cover;
+}
+.hero--home .hero__lead {
+  color: var(--charcoal);
+}
+.hero--home .hero__sub {
+  color: var(--slate);
+}
+.hero--home .btn--ghost {
+  color: var(--charcoal);
+}
 .hero__logo {
   width: clamp(220px, 32vw, 360px);
 }
@@ -477,13 +530,14 @@ strong {
   color: rgba(255, 255, 255, 0.82);
   max-width: 34ch;
 }
-/* Marca d'água do hero (apenas mobile, onde a foto some) */
+/* Marca d'água do hero (apenas mobile, onde a foto some).
+   Isotipo cinza em baixa opacidade — visível sobre o fundo claro. */
 .hero--home::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("../img/isotipo-branco-lg.png") center / auto 90% no-repeat;
-  opacity: 0.055;
+  background: url("../img/isotipo-cinza.png") center / auto 90% no-repeat;
+  opacity: 0.07;
   z-index: 0;
   pointer-events: none;
   display: none;
@@ -518,14 +572,13 @@ strong {
   line-height: 1.5;
 }
 
-/* Seção clara (fundo off-white, título dourado, texto cinza) */
-.section--light {
+/* Seção escura (grafite/grão herdado do fundo, texto branco, título dourado).
+   Marca d'água: isotipo dourado à esquerda, em baixa opacidade. */
+.section--dark {
   position: relative;
   overflow: hidden;
-  background: #f1efe9;
-  color: var(--slate);
 }
-.section--light::before {
+.section--dark::before {
   content: "";
   position: absolute;
   left: clamp(24px, 6vw, 130px);
@@ -538,12 +591,37 @@ strong {
   pointer-events: none;
   z-index: 0;
 }
-.section--light > .container {
+.section--dark > .container {
   position: relative;
   z-index: 1;
 }
-.section--light .t-headline {
-  color: var(--gold-deep);
+.section--dark .t-headline {
+  color: var(--gold);
+}
+
+/* Seção clara (fundo off-white com grão, texto cinza, dourados em bronze).
+   Marca d'água: isotipo cinza centralizado, em baixa opacidade. */
+.section--light {
+  position: relative;
+  overflow: hidden;
+  color: var(--slate);
+  background-image: var(--grain),
+    linear-gradient(162deg, var(--paper-1) 0%, var(--paper-2) 100%);
+  background-repeat: repeat, no-repeat;
+  background-size: 180px 180px, cover;
+}
+.section--light::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../img/isotipo-cinza.png") center center / auto 120% no-repeat;
+  opacity: 0.06;
+  z-index: 0;
+  pointer-events: none;
+}
+.section--light > .container {
+  position: relative;
+  z-index: 1;
 }
 .section--light p {
   color: var(--slate);
@@ -551,27 +629,33 @@ strong {
 .section--light .intro__text p:first-child {
   color: var(--charcoal);
 }
+/* Dourados ganham contraste sobre o claro: bronze no lugar do ouro. */
+.section--light .t-headline,
+.section--light .section-heading--gold {
+  color: var(--gold-deep);
+}
 .section-heading--gold {
   color: var(--gold);
 }
 
-/* Marca d'água branca da seção (90% da altura, centralizada) */
-.section--mark {
-  position: relative;
-  overflow: hidden;
+/* Cartões "duas frentes" sobre fundo claro: ajustes de tinta para contraste. */
+.section--light .front__name {
+  color: var(--charcoal);
 }
-.section--mark::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("../img/isotipo-branco-lg.png") center center / auto 120% no-repeat;
-  opacity: 0.04;
-  z-index: 0;
-  pointer-events: none;
+.section--light .front__label {
+  color: var(--gold-deep);
 }
-.section--mark > .container {
-  position: relative;
-  z-index: 1;
+.section--light .front__cred {
+  color: rgba(64, 65, 63, 0.7);
+}
+.section--light .front__more {
+  color: var(--gold-deep);
+  border-color: var(--gold-deep);
+}
+.section--light .front:hover .front__more,
+.section--light .front:focus-visible .front__more {
+  background: var(--gold-deep);
+  color: var(--white);
 }
 
 /* ---------- Início: as duas frentes ---------- */
@@ -669,7 +753,7 @@ strong {
   .hero--home::after {
     display: block;
   }
-  .section--mark::before {
+  .section--light::before {
     display: none;
   }
   .hero--home .hero__inner {

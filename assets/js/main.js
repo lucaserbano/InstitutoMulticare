@@ -19,6 +19,7 @@
     const setOpen = (open) => {
       toggle.setAttribute("aria-expanded", String(open));
       panel.classList.toggle("is-open", open);
+      if (nav) nav.classList.toggle("is-menu-open", open);
       document.body.style.overflow = open ? "hidden" : "";
     };
     toggle.addEventListener("click", () => {
