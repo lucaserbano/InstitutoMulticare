@@ -42,7 +42,7 @@
     <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
     <!-- ===================== Navbar (compartilhada) ===================== -->
-    <header class="nav" data-nav>
+    <header class="nav nav--on-light" data-nav>
       <div class="container nav__inner">
         <a class="nav__brand" href="index.html" aria-label="Instituto Multicare — Início">
           <img src="assets/img/isotipo-branco.png" alt="" width="262" height="220" />
@@ -97,18 +97,19 @@
 
     <!-- ===================== Conteúdo ===================== -->
     <main id="main">
-      <!-- Hero (faixa escura) -->
-      <section class="hero">
+      <!-- Hero (faixa clara, foto da médica esmaecendo à direita) -->
+      <section class="hero hero--home hero--adriana">
+        <div
+          class="hero__media"
+          role="img"
+          aria-label="Dra. Adriana Matter, dermatologista, no Instituto Multicare"
+        ></div>
         <div class="container">
           <div class="hero__inner">
-            <h1 class="sr-only">Dra. Adriana Matter — Dermatologia</h1>
-            <img
-              class="hero__logo reveal"
-              src="assets/img/logo-adriana.png"
-              alt="Dra. Adriana Matter"
-              width="760"
-              height="360"
-            />
+            <p class="hero__eyebrow reveal">Dermatologia</p>
+            <h1 class="hero__title reveal" style="--reveal-delay: 0.06s">
+              Dra. Adriana Matter
+            </h1>
             <p class="hero__tagline reveal" style="--reveal-delay: 0.12s">
               Especialista em doenças e cirurgias das unhas, tricoses (cabelos),
               dermatologia clínica e estética.
@@ -129,17 +130,18 @@
       </section>
 
       <!-- Sobre (faixa clara) -->
-      <section class="section section--light" aria-labelledby="sobre-titulo">
+      <section class="section section--light section--mark-faint" aria-labelledby="sobre-titulo">
         <div class="container">
           <div class="bio">
-            <!-- FOTO: retrato no consultório — sugestão: fotos/adriana/Setembro-2770.jpg
-                 (alternativa: fotos/adriana/JANEIRO-56.jpg). Substituir o bloco
-                 .photo-ph por <img> com a foto otimizada quando fornecida. -->
             <div class="bio__media reveal">
-              <div class="photo-ph" role="img" aria-label="Foto da Dra. Adriana Matter no consultório (em breve)">
-                <span class="photo-ph__label">Foto</span>
-                <span class="photo-ph__hint">Retrato no consultório — sugestão: Setembro-2770.jpg</span>
-              </div>
+              <img
+                class="photo"
+                src="assets/img/adriana-sobre.webp"
+                alt="Dra. Adriana Matter em seu consultório no Instituto Multicare"
+                width="1100"
+                height="1650"
+                loading="lazy"
+              />
             </div>
 
             <div class="bio__text reveal" style="--reveal-delay: 0.12s">
@@ -170,7 +172,7 @@
       </section>
 
       <!-- Unhas — foco principal (faixa escura) -->
-      <section class="section section--dark" aria-labelledby="unhas-titulo">
+      <section class="section section--dark section--mark-none" aria-labelledby="unhas-titulo">
         <div class="container">
           <div class="focus">
             <div class="focus__intro">
@@ -190,41 +192,40 @@
                   caso.
                 </p>
               </div>
-
-              <div class="focus__lists reveal" style="--reveal-delay: 0.2s">
-                <div class="spec-block">
-                  <span class="spec-block__label">Doenças tratadas</span>
-                  <ul class="spec-list">
-                    <li>Onicomicose (micose das unhas)</li>
-                    <li>Unha encravada</li>
-                    <li>Hipercurvatura ungueal</li>
-                    <li>Doenças inflamatórias das unhas</li>
-                    <li>Infecções nas unhas</li>
-                    <li>Tumores nas unhas</li>
-                  </ul>
-                </div>
-                <div class="spec-block">
-                  <span class="spec-block__label">Do diagnóstico à cirurgia</span>
-                  <!-- CIRURGIAS: complementar com a lista específica de
-                       cirurgias ungueais realizadas pela Dra. Adriana, se
-                       desejar nomeá-las. -->
-                  <p>
-                    Quando há indicação, o tratamento cirúrgico é realizado pela
-                    própria Dra. Adriana — como em casos de unha encravada e de
-                    tumores ungueais —, garantindo a continuidade do cuidado, da
-                    primeira consulta ao pós-operatório.
-                  </p>
-                </div>
-              </div>
             </div>
 
-            <!-- FOTO: sala de procedimentos — sugestão: fotos/adriana/março26-27.jpg.
-                 Substituir o bloco .photo-ph por <img> quando a foto for fornecida. -->
             <div class="focus__media reveal" style="--reveal-delay: 0.12s">
-              <div class="photo-ph" role="img" aria-label="Foto da Dra. Adriana na sala de procedimentos (em breve)">
-                <span class="photo-ph__label">Foto</span>
-                <span class="photo-ph__hint">Na sala de procedimentos — sugestão: março26-27.jpg</span>
-              </div>
+              <img
+                class="photo photo--proc"
+                src="assets/img/nail-anatomy.webp"
+                alt="Ilustração da anatomia da unha: lâmina, lúnula, cutícula, leito e matriz ungueal"
+                width="820"
+                height="1002"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <div class="focus__lists reveal" style="--reveal-delay: 0.2s">
+            <div class="spec-block">
+              <span class="spec-block__label">Doenças tratadas</span>
+              <ul class="spec-list">
+                <li>Onicomicose (micose das unhas)</li>
+                <li>Unha encravada</li>
+                <li>Hipercurvatura ungueal</li>
+                <li>Doenças inflamatórias das unhas</li>
+                <li>Infecções nas unhas</li>
+                <li>Tumores nas unhas</li>
+              </ul>
+            </div>
+            <div class="spec-block">
+              <span class="spec-block__label">Do diagnóstico à cirurgia</span>
+              <p>
+                Quando há indicação, o tratamento cirúrgico é realizado pela
+                própria Dra. Adriana — como em casos de tumores ungueais —,
+                garantindo a continuidade do cuidado, da primeira consulta ao
+                pós-operatório.
+              </p>
             </div>
           </div>
         </div>

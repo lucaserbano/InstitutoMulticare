@@ -556,6 +556,39 @@ strong {
   color: var(--ink-muted);
 }
 
+/* ---------- Hero da Dra. Adriana (faixa clara, foto à direita) ---------- */
+.hero--adriana .hero__media {
+  background-image: url("../img/adriana-hero.webp");
+  background-position: center 22%;
+}
+.hero--adriana .hero__inner {
+  max-width: 42rem;
+}
+.hero__eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: clamp(2.4rem, 1.4rem + 4.2vw, 3.9rem);
+  line-height: 1.05;
+  color: var(--charcoal);
+  max-width: 12ch;
+}
+.hero--adriana .hero__tagline {
+  color: var(--slate);
+}
+.hero--adriana .hero__credentials {
+  color: rgba(64, 65, 63, 0.7);
+}
+
 /* ---------- Início: sobre o instituto ---------- */
 .intro {
   display: grid;
@@ -622,6 +655,13 @@ strong {
 .section--light > .container {
   position: relative;
   z-index: 1;
+}
+/* Marca d'água por seção: mais discreta ou ausente. */
+.section--mark-faint::before {
+  opacity: 0.028;
+}
+.section--mark-none::before {
+  display: none;
 }
 .section--light p {
   color: var(--slate);
@@ -915,12 +955,28 @@ strong {
   color: var(--slate);
 }
 
-/* Faixa-destaque (ex.: Unhas na página da Dra. Adriana) */
+/* Foto real (retrato): mesma moldura/fio e proporção do placeholder. */
+.photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 18%;
+  border: var(--rule);
+  border-radius: var(--radius-md);
+}
+.section--light .photo {
+  border-color: rgba(192, 145, 45, 0.55);
+}
+
+/* Faixa-destaque (ex.: Unhas na página da Dra. Adriana).
+   Coluna esquerda: introdução + listas empilhadas; coluna direita: a foto,
+   que acompanha a altura do texto — equilibrando os dois lados. */
 .focus {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
   gap: clamp(2rem, 6vw, 5rem);
-  align-items: start;
+  align-items: center;
 }
 .focus__intro .t-headline {
   margin-bottom: var(--space-md);
@@ -928,11 +984,21 @@ strong {
 .focus__intro p + p {
   margin-top: 1.1rem;
 }
+/* Ilustração da seção: aparece inteira (proporção natural), centralizada
+   ao lado do texto. */
+.focus__media .photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
 .focus__lists {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-md) var(--space-lg);
+  gap: var(--space-md) clamp(2rem, 5vw, 4rem);
   margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: var(--rule);
 }
 
 /* Listas de especialidade: itens separados por fios dourados hairline */
@@ -1023,6 +1089,19 @@ strong {
   }
   .bio__media {
     max-width: 420px;
+  }
+  .focus__media {
+    position: static;
+    min-height: 0;
+    justify-self: center;
+    max-width: 340px;
+    width: 100%;
+    order: -1;
+  }
+  .focus__media .photo {
+    position: static;
+    aspect-ratio: auto;
+    height: auto;
   }
   .focus__lists,
   .accordion__cols {
