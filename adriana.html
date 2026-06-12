@@ -171,8 +171,58 @@
         </div>
       </section>
 
+      <!-- Formação e títulos (faixa escura) -->
+      <section class="section section--dark section--mark-none section--rule-end" aria-labelledby="formacao-titulo">
+        <div class="container">
+          <div class="formacao">
+            <div class="formacao__head">
+              <span class="eyebrow reveal">Formação</span>
+              <h2 class="t-headline reveal" id="formacao-titulo" style="--reveal-delay: 0.06s">
+                Formação e títulos
+              </h2>
+            </div>
+
+            <ol class="formacao__list">
+              <li class="formacao__item reveal" style="--reveal-delay: 0.1s">
+                <span class="formacao__role">Graduação em Medicina</span>
+                <span class="formacao__org">Universidade Federal do Paraná (UFPR)</span>
+              </li>
+              <li class="formacao__item reveal" style="--reveal-delay: 0.18s">
+                <span class="formacao__role">Residência em Dermatologia</span>
+                <span class="formacao__org">
+                  Hospital do Servidor Público Municipal de São Paulo (HSPM)
+                </span>
+              </li>
+              <li class="formacao__item reveal" style="--reveal-delay: 0.26s">
+                <span class="formacao__role">Título de especialista em Dermatologia</span>
+                <span class="formacao__org">Sociedade Brasileira de Dermatologia (SBD)</span>
+              </li>
+              <li class="formacao__item reveal" style="--reveal-delay: 0.34s">
+                <span class="formacao__role">Especialização em Tricologia</span>
+                <span class="formacao__org">Universidade de Mogi das Cruzes</span>
+              </li>
+              <li class="formacao__item reveal" style="--reveal-delay: 0.42s">
+                <span class="formacao__role">
+                  Especialização em Onicopatias e cirurgia do aparelho ungueal
+                </span>
+                <span class="formacao__org">
+                  Hospital do Servidor Público Municipal de São Paulo (HSPM)
+                </span>
+              </li>
+              <li class="formacao__item reveal" style="--reveal-delay: 0.5s">
+                <span class="formacao__role">Preceptora de Residência Médica</span>
+                <span class="formacao__org">
+                  Ambulatório de doenças ungueais, Santa Casa de Curitiba
+                </span>
+              </li>
+            </ol>
+          </div>
+          <hr class="rule-gold reveal" />
+        </div>
+      </section>
+
       <!-- Unhas — foco principal (faixa escura) -->
-      <section class="section section--dark section--mark-none" aria-labelledby="unhas-titulo">
+      <section class="section section--dark section--mark-none section--rule-start" aria-labelledby="unhas-titulo">
         <div class="container">
           <div class="focus">
             <div class="focus__intro">
@@ -231,27 +281,46 @@
         </div>
       </section>
 
-      <!-- Demais áreas de atuação (faixa clara) -->
-      <section class="section section--light" aria-labelledby="areas-titulo">
+      <!-- Demais áreas de atuação (faixa clara, sem marca d'água) -->
+      <section class="section section--light section--mark-none" aria-labelledby="areas-titulo">
         <div class="container">
-          <span class="eyebrow reveal">Áreas de atuação</span>
-          <h2 class="t-headline section-heading reveal" id="areas-titulo">Cabelos, pele e estética</h2>
+          <div class="areas">
+            <div class="areas__media reveal">
+              <img
+                class="photo photo--areas"
+                src="assets/img/adriana-areas.webp"
+                alt="Dra. Adriana Matter em seu consultório no Instituto Multicare"
+                width="900"
+                height="1350"
+                loading="lazy"
+              />
+            </div>
 
-          <div class="accordion reveal" style="--reveal-delay: 0.12s">
-            <!-- Cabelos (tricoses) -->
-            <div class="accordion__item">
-              <h3 class="sr-only">Cabelos (tricoses)</h3>
-              <button
-                class="accordion__trigger"
-                type="button"
-                data-accordion
-                aria-expanded="false"
-                aria-controls="ac-cabelos"
-              >
-                Cabelos (tricoses)
-                <span class="accordion__icon" aria-hidden="true"></span>
-              </button>
-              <div class="accordion__panel" id="ac-cabelos">
+            <div class="areas__main">
+              <div class="areas-head">
+                <span class="eyebrow reveal">Áreas de atuação</span>
+                <h2 class="t-headline reveal" id="areas-titulo">Cabelos, pele e estética</h2>
+                <p class="areas-hint reveal" style="--reveal-delay: 0.08s">
+                  <span class="areas-hint__icon" aria-hidden="true"></span>
+                  Toque em cada área para ver as condições e os procedimentos.
+                </p>
+              </div>
+
+              <div class="accordion reveal" style="--reveal-delay: 0.12s">
+                <!-- Cabelos (tricoses) -->
+                <div class="accordion__item">
+                  <h3 class="sr-only">Cabelos (tricoses)</h3>
+                  <button
+                    class="accordion__trigger"
+                    type="button"
+                    data-accordion
+                    aria-expanded="true"
+                    aria-controls="ac-cabelos"
+                  >
+                    Cabelos (tricoses)
+                    <span class="accordion__icon" aria-hidden="true"></span>
+                  </button>
+                  <div class="accordion__panel is-open" id="ac-cabelos">
                 <div>
                   <div class="accordion__body">
                     <p>
@@ -381,6 +450,8 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
             </div>
           </div>
 

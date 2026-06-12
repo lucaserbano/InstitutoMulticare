@@ -36,16 +36,30 @@
     });
   }
 
-  /* ---- Acordeão ---- */
-  document.querySelectorAll("[data-accordion]").forEach((trigger) => {
+  /* ---- Acordeão (um aberto por vez) ---- */
+  const setItemOpen = (trigger, open) => {
     const panelEl = document.getElementById(
       trigger.getAttribute("aria-controls")
     );
-    if (!panelEl) return;
+    trigger.setAttribute("aria-expanded", String(open));
+    if (panelEl) panelEl.classList.toggle("is-open", open);
+  };
+  document.querySelectorAll("[data-accordion]").forEach((trigger) => {
+    if (!document.getElementById(trigger.getAttribute("aria-controls"))) return;
     trigger.addEventListener("click", () => {
-      const open = trigger.getAttribute("aria-expanded") === "true";
-      trigger.setAttribute("aria-expanded", String(!open));
-      panelEl.classList.toggle("is-open", !open);
+      const willOpen = trigger.getAttribute("aria-expanded") !== "true";
+      // Ao abrir um item, fecha os demais do mesmo acordeão.
+      if (willOpen) {
+        const group = trigger.closest(".accordion");
+        if (group) {
+          group.querySelectorAll("[data-accordion]").forEach((other) => {
+            if (other !== trigger && other.getAttribute("aria-expanded") === "true") {
+              setItemOpen(other, false);
+            }
+          });
+        }
+      }
+      setItemOpen(trigger, willOpen);
     });
   });
 
