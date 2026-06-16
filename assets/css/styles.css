@@ -593,6 +593,21 @@ strong {
   color: rgba(64, 65, 63, 0.7);
 }
 
+/* ---------- Hero do Dr. Douglas (faixa clara, foto à direita) ---------- */
+.hero--douglas .hero__media {
+  background-image: url("../img/douglas-hero.webp");
+  background-position: center 18%;
+}
+.hero--douglas .hero__inner {
+  max-width: 45rem;
+}
+.hero--douglas .hero__tagline {
+  color: var(--slate);
+}
+.hero--douglas .hero__credentials {
+  color: rgba(64, 65, 63, 0.7);
+}
+
 /* ---------- Início: sobre o instituto ---------- */
 .intro {
   display: grid;
@@ -871,6 +886,17 @@ strong {
 .areas-hint__icon::after {
   width: 1.5px;
   height: 10px;
+}
+/* Dica em faixa escura: texto e ícone dourado legíveis sobre o grafite */
+.section--dark .areas-hint {
+  color: var(--ink-muted);
+}
+.section--dark .areas-hint__icon {
+  border-color: rgba(219, 180, 59, 0.55);
+}
+.section--dark .areas-hint__icon::before,
+.section--dark .areas-hint__icon::after {
+  background: var(--gold);
 }
 
 /* ---------- Acordeão (componente de assinatura) ---------- */
