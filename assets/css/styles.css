@@ -927,10 +927,26 @@ strong {
     position: relative;
     inset: auto;
     width: auto;
-    height: clamp(180px, 44vw, 280px);
+    /* Banner mais alto: mostra mais da foto na vertical. */
+    height: clamp(300px, 76vw, 460px);
     margin: calc(-1 * var(--space-xl)) 0 var(--space-md);
-    -webkit-mask-image: linear-gradient(to bottom, #000 52%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 52%, transparent 100%);
+    /* Fade longo e gradual (vários passos) — transição suave, não abrupta. */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 34%,
+      rgba(0, 0, 0, 0.82) 54%,
+      rgba(0, 0, 0, 0.45) 76%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 34%,
+      rgba(0, 0, 0, 0.82) 54%,
+      rgba(0, 0, 0, 0.45) 76%,
+      transparent 100%
+    );
   }
   .area__inner,
   .area--left .area__inner {
