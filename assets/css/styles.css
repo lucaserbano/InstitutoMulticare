@@ -845,6 +845,103 @@ strong {
   object-position: center center;
 }
 
+/* ---------- Áreas de atuação: faixa dedicada com foto esmaecida ----------
+   Cada frente (longevidade, performance, ortopedia) ocupa uma faixa própria.
+   A foto entra como plano de fundo de um lado, esmaecendo para o fundo da
+   faixa (mesmo princípio da hero); o conteúdo fica do lado oposto. */
+.area {
+  position: relative;
+  overflow: hidden;
+}
+.area__media {
+  position: absolute;
+  inset: 0;
+  width: min(56%, 880px);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+.area--right .area__media {
+  inset: 0 0 0 auto;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 24%, #000 86%);
+  mask-image: linear-gradient(to right, transparent 0%, transparent 24%, #000 86%);
+}
+.area--left .area__media {
+  inset: 0 auto 0 0;
+  -webkit-mask-image: linear-gradient(to left, transparent 0%, transparent 24%, #000 86%);
+  mask-image: linear-gradient(to left, transparent 0%, transparent 24%, #000 86%);
+}
+/* Faixa clara: a foto precisa sumir mais cedo na transição p/ o texto —
+   texto escuro exige fundo claro. Zona limpa maior + ramp mais curta. */
+.section--light .area--left .area__media {
+  -webkit-mask-image: linear-gradient(to left, transparent 0%, transparent 38%, #000 72%);
+  mask-image: linear-gradient(to left, transparent 0%, transparent 38%, #000 72%);
+}
+.section--light .area--right .area__media {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 38%, #000 72%);
+  mask-image: linear-gradient(to right, transparent 0%, transparent 38%, #000 72%);
+}
+.area > .container {
+  position: relative;
+  z-index: 1;
+}
+.area__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 42rem;
+}
+/* Foto à esquerda → conteúdo encostado à direita. */
+.area--left .area__inner {
+  margin-left: auto;
+}
+.area__lead {
+  font-size: clamp(1.05rem, 0.98rem + 0.5vw, 1.25rem);
+  line-height: 1.6;
+  max-width: 46ch;
+}
+.area__cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md) clamp(2rem, 4vw, 3.5rem);
+  margin-top: var(--space-sm);
+}
+/* CTA quando é a única coisa da sua faixa: sem fio nem margem extra —
+   texto centralizado com espaço igual acima e abaixo (padding da seção).
+   Seletor com dupla classe p/ vencer o `.cta-band` base independente da ordem. */
+.cta-band.cta-band--solo {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+@media (max-width: 820px) {
+  /* A foto vira uma faixa no topo da seção, com o conteúdo logo abaixo. */
+  .area__media,
+  .area--right .area__media,
+  .area--left .area__media,
+  .section--light .area--right .area__media,
+  .section--light .area--left .area__media {
+    position: relative;
+    inset: auto;
+    width: auto;
+    height: clamp(180px, 44vw, 280px);
+    margin: calc(-1 * var(--space-xl)) 0 var(--space-md);
+    -webkit-mask-image: linear-gradient(to bottom, #000 52%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 52%, transparent 100%);
+  }
+  .area__inner,
+  .area--left .area__inner {
+    max-width: none;
+    margin-left: 0;
+  }
+  .area__cols {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---------- Áreas de atuação: cabeçalho + dica de uso ---------- */
 .areas-head {
   margin-bottom: var(--space-md);
