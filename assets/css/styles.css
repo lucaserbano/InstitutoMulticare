@@ -1562,6 +1562,69 @@ strong {
   }
 }
 
+/* ---------- Botão flutuante de WhatsApp ----------
+   Segue a identidade: círculo dourado + ícone grafite (espelha .btn--primary).
+   Hover replica o do hero: sobe 2px e o dourado vira bronze. */
+.wa-float {
+  position: fixed;
+  right: max(1.5rem, env(safe-area-inset-right));
+  bottom: max(1.5rem, env(safe-area-inset-bottom));
+  z-index: 140;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--charcoal);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(192, 145, 45, 0.4);
+  transition: background var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+.wa-float:hover {
+  background: var(--gold-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(192, 145, 45, 0.55);
+}
+.wa-float__icon {
+  position: relative;
+  z-index: 1;
+}
+/* Anel pulsante dourado (dourado estrutural — fio, não preenchimento). */
+.wa-float__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .wa-float {
+    width: 56px;
+    height: 56px;
+    right: max(1.1rem, env(safe-area-inset-right));
+    bottom: max(1.1rem, env(safe-area-inset-bottom));
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .wa-float__ring {
+    animation: wa-pulse 2.6s var(--ease-out) infinite;
+  }
+}
+@keyframes wa-pulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {
