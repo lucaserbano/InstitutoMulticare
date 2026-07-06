@@ -548,6 +548,28 @@ strong {
   gap: var(--space-sm);
   margin-top: var(--space-sm);
 }
+/* Chamada de Instagram no hero: frase à esquerda + botão à direita.
+   Secundário ao CTA principal — reaproveita o .btn--ghost (dourado
+   estrutural) e o ícone do rodapé. Fica logo abaixo dos botões. */
+.hero__social {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: calc(-1 * var(--space-md) + var(--space-sm));
+}
+.hero__social-text {
+  font-size: 0.95rem;
+  color: var(--slate);
+}
+.btn--ig {
+  padding: 0.6rem 1.25rem;
+}
+.btn--ig svg {
+  width: 18px;
+  height: 18px;
+  color: var(--gold-deep);
+}
 .hero__credentials {
   font-family: var(--font-body);
   font-size: 0.8125rem;
